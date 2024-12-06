@@ -7,12 +7,13 @@ import re
 import io
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
-from functools import lru_cache
+from functools import lru_cache, cached_property
 import logging
 from logging.handlers import RotatingFileHandler
 from dataclasses import dataclass, field
 from llm.base import LLM, Role
 from llm._llmserver import LLMServer, GPT35_TURBO
+from opentelemetry import trace, metrics
 
 # Configure logging
 logging.basicConfig(
@@ -60,6 +61,16 @@ class CodeBrew:
         self.temp_buffer = io.StringIO()
         self.executor = ThreadPoolExecutor(max_workers=4)
         self._install_required_packages()
+        self.result_cache = {}
+        # Initialize monitoring
+        self.tracer = trace.get_tracer(__name__)
+        self.meter = metrics.get_meter(__name__)
+        
+        # Set up metrics
+        self.execution_time = self.meter.create_histogram(
+            name="codebrew_execution_time",
+            description="Time taken to execute commands"
+        )
 
     def _install_required_packages(self) -> None:
         """Install required packages with error handling and logging."""
@@ -193,6 +204,11 @@ class CodeBrew:
         """Clean up resources."""
         self.executor.shutdown(wait=True)
         self.temp_buffer.close()
+
+    @cached_property
+    def llm_client(self):
+        """Lazy initialization of LLM client."""
+        return self._create_llm_client()
 
 async def main():
     """Async main function with improved error handling."""

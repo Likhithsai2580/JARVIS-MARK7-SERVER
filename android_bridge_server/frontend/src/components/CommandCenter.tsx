@@ -73,6 +73,21 @@ const CommandCenter: React.FC = () => {
   };
 
   const handleSendCommand = async () => {
+    // Validate command format
+    if (!isValidCommand(command)) {
+      setError('Invalid command format');
+      return;
+    }
+    
+    // Sanitize parameters
+    const sanitizedParams = sanitizeParams(params);
+    
+    // Rate limiting
+    if (!checkRateLimit()) {
+      setError('Too many requests. Please wait.');
+      return;
+    }
+    
     try {
       setError('');
       const response = await axios.post(`${API_URL}/api/send-command`, {

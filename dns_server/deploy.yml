@@ -32,3 +32,68 @@ jobs:
         cd monitoring_server
         python api.py &
         echo "Monitoring server started on port ${{ secrets.MONITOR_PORT }}" 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jarvis-dns
+  namespace: jarvis
+spec:
+  selector:
+    app: jarvis-dns
+  ports:
+    - protocol: TCP
+      port: 53
+      targetPort: 53
+      name: dns
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      name: api
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jarvis-dns
+  namespace: jarvis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jarvis-dns
+  template:
+    metadata:
+      labels:
+        app: jarvis-dns
+    spec:
+      containers:
+      - name: jarvis-dns
+        image: jarvis/dns-server:latest
+        ports:
+        - containerPort: 53
+          name: dns
+        - containerPort: 8000
+          name: api
+        env:
+        - name: DOMAIN
+          value: "jarvis.local"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          limits:
+            cpu: "1"
+            memory: "1Gi"
+          requests:
+            cpu: "500m"
+            memory: "512Mi" 

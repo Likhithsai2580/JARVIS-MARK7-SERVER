@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 import os
 import logging
 from collections import deque
+from dns_server import JarvisDNSServer, ServiceRecord
 
 load_dotenv()
 
@@ -58,6 +59,19 @@ class StatusUpdate(BaseModel):
     status: str
     busy: Optional[bool] = False
     error: Optional[str] = None
+
+class ServiceRegistration(BaseModel):
+    service_type: str
+    ip: str
+    port: int
+
+class ServiceResponse(BaseModel):
+    name: str
+    ip: str
+    port: int
+    health: bool
+
+dns_server = JarvisDNSServer()
 
 @app.post("/register")
 async def register_instance(request: RegisterRequest):
@@ -189,6 +203,40 @@ async def cleanup_dead_instances():
             del history[server]
     
     return {"cleaned_instances": cleaned}
+
+@app.post("/register")
+async def register_service(service: ServiceRegistration):
+    success = await dns_server.register_service(
+        service.service_type,
+        service.ip,
+        service.port
+    )
+    if not success:
+        raise HTTPException(status_code=400, detail="Invalid service type")
+    return {"status": "registered"}
+
+@app.get("/service/{service_type}")
+async def get_service(service_type: str) -> ServiceResponse:
+    service = await dns_server.get_service(service_type)
+    if not service:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No healthy {service_type} services available"
+        )
+    return ServiceResponse(
+        name=service.name,
+        ip=service.ip,
+        port=service.port,
+        health=service.health
+    )
+
+@app.get("/status")
+async def get_status() -> Dict[str, List[Dict]]:
+    return dns_server.get_service_status()
+
+@app.on_event("startup")
+async def startup_event():
+    await dns_server.run()
 
 if __name__ == "__main__":
     uvicorn.run(

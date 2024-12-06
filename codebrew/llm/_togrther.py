@@ -14,6 +14,7 @@ from copy import deepcopy
 
 import os
 import together
+import asyncio
 
 load_dotenv()
 
@@ -81,23 +82,28 @@ class Together(LLM):
         elif not save and prompt:
             toSend.append(self.getMessage(Role.user, prompt, imageUrl))
 
-        try:
-            extra = {}
-            if self.cheatCode is not None:
-                extra["seed"] = 0
+        max_retries = 3
+        retry_delay = 1
+        
+        for attempt in range(max_retries):
+            try:
+                extra = {}
+                if self.cheatCode is not None:
+                    extra["seed"] = 0
 
-            chat_completion = self.client.chat.completions.create(
-                messages=self.messages + toSend,
-                model=self.model.name,
-                temperature=self.temperature,
-                max_tokens=self.maxTokens,
-                stream=True,
-                **extra,
-                **self.extra
-            )
-        except Exception as e:
-            self.logger.error(e)
-            return "Please check log file some error occured."
+                chat_completion = self.client.chat.completions.create(
+                    messages=self.messages + toSend,
+                    model=self.model.name,
+                    temperature=self.temperature,
+                    max_tokens=self.maxTokens,
+                    stream=True,
+                    **extra,
+                    **self.extra
+                )
+            except Exception as e:
+                if attempt == max_retries - 1:
+                    raise
+                await asyncio.sleep(retry_delay * (attempt + 1))
 
         final_response = ""
         
