@@ -2,7 +2,81 @@
 
 All notable changes to the JARVIS MARK7 server system will be documented in this file.
 
-## [1.0.0] - 06-12-2024
+## [7.0.1] - 07-12-2024
+
+### Added
+- DNS service discovery with automatic failover
+- Service orchestration with load balancing
+- Real-time WebSocket communication enhancements
+- Network defense system with threat detection
+- Power management system for service optimization
+- Enhanced monitoring and metrics collection
+- Multi-instance support with automatic scaling
+
+### Enhanced
+- Service registration and health check system
+- Load balancing across service instances
+- Error handling and recovery mechanisms
+- Caching system for service discovery
+- Response formatting with JARVIS personality
+- System status monitoring and reporting
+- WebSocket session management
+
+### Fixed
+- DNS registration retry mechanism
+- Service discovery cache invalidation
+- WebSocket connection stability
+- Error handling in orchestrator fallbacks
+- Health check reporting accuracy
+- Service instance status tracking
+- Command processing timeout handling
+
+### Security
+- Network defense system implementation
+- Enhanced threat detection
+- IP-based access control improvements
+- Security protocol enhancements
+- Session validation improvements
+- Secure WebSocket communication
+- Environment variable handling
+
+### Performance
+- Power management optimization
+- Service resource allocation
+- Enhanced response caching
+- Reduced DNS lookup overhead
+- Better resource utilization
+- Optimized command processing
+- Improved error recovery speed
+
+### Infrastructure
+- Multi-instance deployment support
+- Docker compose configuration updates
+- GitHub Actions workflow improvements
+- Environment configuration management
+- Service port allocation system
+- Logging and monitoring enhancements
+- Health check system improvements
+
+### Known Issues
+- Occasional DNS registration delays during high load
+- Power management system needs fine-tuning
+- Network defense false positives need adjustment
+- Service discovery cache may need manual refresh
+- WebSocket reconnection can be delayed
+
+### Dependencies
+- Updated FastAPI to latest version
+- Enhanced httpx client implementation
+- Updated WebSocket libraries
+- Improved DNS client
+- Updated monitoring tools
+- Enhanced security libraries
+- Updated development dependencies
+
+For previous changes, see version 7.0.0 below.
+
+## [7.0.0] - 06-12-2024
 
 ### Added
 - Initial release of JARVIS MARK7 server system
