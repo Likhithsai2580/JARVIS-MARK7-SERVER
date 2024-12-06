@@ -1,0 +1,79 @@
+name: Deploy CodeBrew API
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Run every 6 hours
+  workflow_dispatch:  # Allow manual triggers
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        instance: [1, 2, 3, 4, 5]
+    
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    
+    - name: Create .env file
+      run: |
+        echo "HOST=${{ secrets.HOST }}" >> .env
+        echo "PORT=$(( ${{ secrets.BASE_PORT }} + ${{ matrix.instance }} ))" >> .env
+        echo "INSTANCE_ID=${{ matrix.instance }}" >> .env
+        echo "ENV=production" >> .env
+        echo "DEBUG=False" >> .env
+        echo "GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}" >> .env
+        echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env
+        echo "COHERE_API_KEY=${{ secrets.COHERE_API_KEY }}" >> .env
+        echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+        echo "TOGETHER_API_KEY=${{ secrets.TOGETHER_API_KEY }}" >> .env
+        echo "DEFAULT_MODEL=${{ secrets.DEFAULT_MODEL }}" >> .env
+        echo "MAX_TOKENS=${{ secrets.MAX_TOKENS }}" >> .env
+        echo "TEMPERATURE=${{ secrets.TEMPERATURE }}" >> .env
+        echo "MAX_RETRIES=${{ secrets.MAX_RETRIES }}" >> .env
+        echo "KEEP_HISTORY=${{ secrets.KEEP_HISTORY }}" >> .env
+        echo "VERBOSE=${{ secrets.VERBOSE }}" >> .env
+        echo "HEALTH_CHECK_URL=${{ secrets.HEALTH_CHECK_URL }}" >> .env
+    
+    - name: Start API Server and Monitor
+      run: |
+        # Register new instance
+        curl -X POST "${{ secrets.HEALTH_CHECK_URL }}/register" \
+          -H "Content-Type: application/json" \
+          -d "{\"server\": \"Codebrew\", \"instance_id\": ${{ matrix.instance }}, \"port\": $(( ${{ secrets.BASE_PORT }} + ${{ matrix.instance }} ))}"
+
+        # Start API server
+        python api.py &
+        API_PID=$!
+        
+        # Health check loop
+        while true; do
+          if ! kill -0 $API_PID 2>/dev/null; then
+            # Notify server about instance death
+            curl -X POST "${{ secrets.HEALTH_CHECK_URL }}/status" \
+              -H "Content-Type: application/json" \
+              -d "{\"server\": \"Codebrew\", \"instance_id\": ${{ matrix.instance }}, \"status\": \"dead\"}"
+            echo "API server crashed, exiting..."
+            exit 1
+          fi
+          
+          # Get current busy status
+          BUSY=$(curl -s "http://localhost:$(( ${{ secrets.BASE_PORT }} + ${{ matrix.instance }} ))/health" | jq -r .busy)
+          
+          # Send health check with instance ID and status
+          curl -X POST "${{ secrets.HEALTH_CHECK_URL }}/status" \
+            -H "Content-Type: application/json" \
+            -d "{\"server\": \"Codebrew\", \"instance_id\": ${{ matrix.instance }}, \"status\": \"active\", \"busy\": $BUSY}"
+          
+          sleep 60
+        done

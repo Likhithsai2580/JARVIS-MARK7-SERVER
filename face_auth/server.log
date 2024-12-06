@@ -1,0 +1,507 @@
+2024-12-04 12:45:42,361 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 12:45:42,364 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 12:48:25,375 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 12:48:25,376 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 12:48:25,377 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 12:48:30,382 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 12:48:30,386 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 12:50:55,837 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 12:50:55,840 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 12:50:55,841 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 12:51:01,668 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 12:51:01,671 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 13:14:09,484 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\typing.py', reloading
+2024-12-04 13:14:09,484 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2024-12-04 13:14:09,525 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\datastructures\\__init__.py', reloading
+2024-12-04 13:14:09,525 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\datastructures\\headers.py', reloading
+2024-12-04 13:14:09,574 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\wrappers.py', reloading
+2024-12-04 13:14:09,580 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2024-12-04 13:14:09,605 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\globals.py', reloading
+2024-12-04 13:14:09,605 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\request.py', reloading
+2024-12-04 13:14:09,630 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\sansio\\request.py', reloading
+2024-12-04 13:14:09,712 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\_dtype_like.py', reloading
+2024-12-04 13:14:09,721 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\_shape.py', reloading
+2024-12-04 13:14:09,736 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\_array_like.py', reloading
+2024-12-04 13:14:18,751 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 13:14:18,760 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 13:14:55,187 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\__init__.py', reloading
+2024-12-04 13:15:05,139 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 13:15:05,147 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 13:16:10,601 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\app.py', reloading
+2024-12-04 13:16:10,640 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\app.py', reloading
+2024-12-04 13:16:10,640 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\app.py', reloading
+2024-12-04 13:16:20,827 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 13:16:20,827 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 14:15:00,640 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.188.40:5001
+2024-12-04 14:15:00,642 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 14:15:00,658 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 14:15:05,455 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 14:15:05,461 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 14:16:41,257 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\app.py', reloading
+2024-12-04 14:16:42,957 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 14:16:47,061 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 14:16:47,063 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 14:18:05,477 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\cv2\\typing\\__init__.py', reloading
+2024-12-04 14:18:05,481 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\cv2\\mat_wrapper\\__init__.py', reloading
+2024-12-04 14:18:05,487 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\__init__.py', reloading
+2024-12-04 14:18:05,492 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_utils\\__init__.py', reloading
+2024-12-04 14:18:05,551 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\PIL\\__init__.py', reloading
+2024-12-04 14:18:05,551 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\PIL\\ImageTk.py', reloading
+2024-12-04 14:18:05,585 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\PIL\\Image.py', reloading
+2024-12-04 14:18:06,256 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 14:18:10,433 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 14:18:10,443 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 14:22:12,697 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\io.py', reloading
+2024-12-04 14:22:12,705 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\__init__.py', reloading
+2024-12-04 14:22:12,714 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\json\\__init__.py', reloading
+2024-12-04 14:22:12,719 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\wrappers.py', reloading
+2024-12-04 14:22:12,732 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2024-12-04 14:22:12,732 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2024-12-04 14:22:12,761 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2024-12-04 14:22:13,496 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 14:22:18,069 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 14:22:18,069 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 14:29:54,541 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\tkinter\\messagebox.py', reloading
+2024-12-04 14:29:56,132 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 14:30:00,817 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 14:30:00,819 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 15:07:10,326 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.188.40:5001
+2024-12-04 15:07:10,326 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 15:07:10,335 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 15:07:15,904 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 15:07:15,907 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 15:08:01,487 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\OneDrive\\Desktop\\JARVIS-MARK7-CLIENT\\server\\api.py', reloading
+2024-12-04 15:08:02,693 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 15:08:07,441 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 15:08:07,443 - werkzeug - INFO -  * Debugger PIN: 132-853-477
+2024-12-04 18:10:23,062 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.43.40:5001
+2024-12-04 18:10:23,063 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 18:10:23,081 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 18:10:28,570 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 18:10:28,574 - werkzeug - INFO -  * Debugger PIN: 784-536-913
+2024-12-04 21:23:39,450 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 21:23:39,450 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 21:23:39,467 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 21:23:45,364 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 21:23:45,368 - werkzeug - INFO -  * Debugger PIN: 784-536-913
+2024-12-04 21:37:57,852 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:37:57] "OPTIONS /auth HTTP/1.1" 200 -
+2024-12-04 21:37:58,109 - __main__ - INFO - Received auth request
+2024-12-04 21:37:58,109 - __main__ - INFO - Auth mode: register
+2024-12-04 21:37:58,109 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 21:37:58,109 - __main__ - INFO - Processing face image
+2024-12-04 21:37:58,547 - __main__ - ERROR - No face detected in registration image
+2024-12-04 21:37:58,553 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:37:58] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 21:38:02,184 - __main__ - INFO - Received auth request
+2024-12-04 21:38:02,185 - __main__ - INFO - Auth mode: register
+2024-12-04 21:38:02,186 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 21:38:02,186 - __main__ - INFO - Processing face image
+2024-12-04 21:38:02,239 - __main__ - ERROR - No face detected in registration image
+2024-12-04 21:38:02,241 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:38:02] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 21:38:05,588 - __main__ - INFO - Received auth request
+2024-12-04 21:38:05,588 - __main__ - INFO - Auth mode: register
+2024-12-04 21:38:05,590 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 21:38:05,591 - __main__ - INFO - Processing face image
+2024-12-04 21:38:05,653 - __main__ - ERROR - No face detected in registration image
+2024-12-04 21:38:05,658 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:38:05] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 21:38:36,037 - __main__ - INFO - Received auth request
+2024-12-04 21:38:36,038 - __main__ - INFO - Auth mode: register
+2024-12-04 21:38:36,038 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 21:38:36,038 - __main__ - INFO - Processing face image
+2024-12-04 21:38:36,075 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 21:38:36,086 - __main__ - INFO - Saved face image to: user_data\hacker\hacker.jpg
+2024-12-04 21:38:36,087 - __main__ - INFO - Successfully registered user: hacker
+2024-12-04 21:38:36,089 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:38:36] "POST /auth HTTP/1.1" 200 -
+2024-12-04 21:38:43,666 - __main__ - INFO - Received auth request
+2024-12-04 21:38:43,666 - __main__ - INFO - Auth mode: login
+2024-12-04 21:38:43,676 - __main__ - ERROR - Auth error: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgcodecs\src\loadsave.cpp:798: error: (-215:Assertion failed) !_img.empty() in function 'cv::imwrite'
+
+2024-12-04 21:38:43,677 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:38:43] "[35m[1mPOST /auth HTTP/1.1[0m" 500 -
+2024-12-04 21:39:29,947 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\__init__.py', reloading
+2024-12-04 21:39:29,961 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\app.py', reloading
+2024-12-04 21:39:29,996 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\sansio\\app.py', reloading
+2024-12-04 21:39:30,005 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\sansio\\scaffold.py', reloading
+2024-12-04 21:39:30,031 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\globals.py', reloading
+2024-12-04 21:39:30,034 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\wrappers.py', reloading
+2024-12-04 21:39:30,038 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+2024-12-04 21:39:30,038 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\request.py', reloading
+2024-12-04 21:39:30,050 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\sansio\\request.py', reloading
+2024-12-04 21:39:30,061 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\json\\__init__.py', reloading
+2024-12-04 21:39:30,066 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+2024-12-04 21:39:30,086 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\sansio\\response.py', reloading
+2024-12-04 21:39:30,299 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\base64.py', reloading
+2024-12-04 21:39:30,382 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\uuid.py', reloading
+2024-12-04 21:39:30,396 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\logging\\handlers.py', reloading
+2024-12-04 21:39:30,431 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\blueprints.py', reloading
+2024-12-04 21:39:30,435 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\sansio\\blueprints.py', reloading
+2024-12-04 21:39:30,459 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\flask\\typing.py', reloading
+2024-12-04 21:39:30,518 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\datastructures\\__init__.py', reloading
+2024-12-04 21:39:30,525 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\datastructures\\headers.py', reloading
+2024-12-04 21:39:30,595 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\cv2\\typing\\__init__.py', reloading
+2024-12-04 21:39:30,600 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\cv2\\mat_wrapper\\__init__.py', reloading
+2024-12-04 21:39:30,607 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\__init__.py', reloading
+2024-12-04 21:39:30,610 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_utils\\__init__.py', reloading
+2024-12-04 21:39:30,630 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\_dtype_like.py', reloading
+2024-12-04 21:39:30,633 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\_shape.py', reloading
+2024-12-04 21:39:30,636 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\numpy\\_typing\\_array_like.py', reloading
+2024-12-04 21:39:30,717 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\deepface\\commons\\folder_utils.py', reloading
+2024-12-04 21:39:30,777 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\deepface\\commons\\package_utils.py', reloading
+2024-12-04 21:39:30,787 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\deepface\\commons\\logger.py', reloading
+2024-12-04 21:39:30,795 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tensorflow\\python\\platform\\tf_logging.py', reloading
+2024-12-04 21:39:30,800 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tensorflow\\python\\util\\tf_export.py', reloading
+2024-12-04 21:39:30,853 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\utils.py', reloading
+2024-12-04 21:39:30,865 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\_internal.py', reloading
+2024-12-04 21:39:31,828 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 21:39:40,268 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 21:39:40,271 - werkzeug - INFO -  * Debugger PIN: 784-536-913
+2024-12-04 21:39:58,121 - __main__ - INFO - Received auth request
+2024-12-04 21:39:58,121 - __main__ - INFO - Auth mode: login
+2024-12-04 21:39:58,121 - __main__ - ERROR - Auth error: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgcodecs\src\loadsave.cpp:798: error: (-215:Assertion failed) !_img.empty() in function 'cv::imwrite'
+
+2024-12-04 21:39:58,124 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:39:58] "[35m[1mPOST /auth HTTP/1.1[0m" 500 -
+2024-12-04 21:39:59,749 - __main__ - INFO - Received auth request
+2024-12-04 21:39:59,750 - __main__ - INFO - Auth mode: login
+2024-12-04 21:39:59,750 - __main__ - ERROR - Auth error: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgcodecs\src\loadsave.cpp:798: error: (-215:Assertion failed) !_img.empty() in function 'cv::imwrite'
+
+2024-12-04 21:39:59,752 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:39:59] "[35m[1mPOST /auth HTTP/1.1[0m" 500 -
+2024-12-04 21:40:57,135 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 21:40:57,135 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 21:40:57,159 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 21:41:03,067 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 21:41:03,073 - werkzeug - INFO -  * Debugger PIN: 784-536-913
+2024-12-04 21:41:35,206 - __main__ - INFO - Received auth request
+2024-12-04 21:41:35,209 - __main__ - INFO - Auth mode: register
+2024-12-04 21:41:35,209 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 21:41:35,209 - __main__ - INFO - Processing face image
+2024-12-04 21:41:35,477 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 21:41:35,490 - __main__ - INFO - Saved face image to: user_data\hacker\hacker.jpg
+2024-12-04 21:41:35,491 - __main__ - INFO - Successfully registered user: hacker
+2024-12-04 21:41:35,498 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:41:35] "POST /auth HTTP/1.1" 200 -
+2024-12-04 21:41:40,881 - __main__ - INFO - Received auth request
+2024-12-04 21:41:40,882 - __main__ - INFO - Auth mode: login
+2024-12-04 21:41:40,896 - __main__ - INFO - Temporary image saved at: user_data\temp_2186bff7a2d940d0815725644b77c50b.jpg
+2024-12-04 21:41:41,127 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tf_keras\\src\\engine\\functional.py', reloading
+2024-12-04 21:41:41,130 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tensorflow\\python\\trackable\\base.py', reloading
+2024-12-04 21:41:41,130 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tf_keras\\src\\engine\\training.py', reloading
+2024-12-04 21:41:41,130 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tf_keras\\src\\utils\\traceback_utils.py', reloading
+2024-12-04 21:41:41,137 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tf_keras\\src\\engine\\sequential.py', reloading
+2024-12-04 21:41:41,137 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\deepface\\models\\facial_recognition\\VGGFace.py', reloading
+2024-12-04 21:41:41,140 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\deepface\\modules\\modeling.py', reloading
+2024-12-04 21:41:41,142 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\deepface\\modules\\verification.py', reloading
+2024-12-04 21:41:41,144 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\debug\\__init__.py', reloading
+2024-12-04 21:41:41,144 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\werkzeug\\serving.py', reloading
+2024-12-04 21:41:41,151 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\socketserver.py', reloading
+2024-12-04 21:41:41,151 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\threading.py', reloading
+2024-12-04 21:41:42,113 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2024-12-04 21:41:47,532 - werkzeug - WARNING -  * Debugger is active!
+2024-12-04 21:41:47,535 - werkzeug - INFO -  * Debugger PIN: 784-536-913
+2024-12-04 21:41:47,674 - __main__ - INFO - Received auth request
+2024-12-04 21:41:47,676 - __main__ - INFO - Auth mode: login
+2024-12-04 21:41:47,686 - __main__ - INFO - Temporary image saved at: user_data\temp_67aa360d75394f3c98eadb05cb22dcb1.jpg
+2024-12-04 21:41:47,967 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Likhith Sai\\AppData\\Roaming\\Python\\Python312\\site-packages\\tf_keras\\src\\layers\\pooling\\max_pooling2d.py', reloading
+2024-12-04 21:41:48,477 - werkzeug - INFO -  * Detected change in 'C:\\Python312\\Lib\\encodings\\ascii.py', reloading
+2024-12-04 21:45:02,367 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 21:45:02,367 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 21:45:09,457 - __main__ - INFO - Received auth request
+2024-12-04 21:45:09,457 - __main__ - INFO - Auth mode: login
+2024-12-04 21:45:09,755 - __main__ - ERROR - No face detected in login image
+2024-12-04 21:45:09,756 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:45:09] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 21:47:20,298 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 21:47:20,299 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 21:47:31,214 - __main__ - INFO - Received auth request
+2024-12-04 21:47:31,214 - __main__ - INFO - Auth mode: login
+2024-12-04 21:47:31,439 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 21:47:31,441 - __main__ - INFO - Face detected at position: x=228, y=137, width=236, height=236
+2024-12-04 21:47:31,446 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_3df9e6c581ea41c4860f81fd4fa9c59e\temp.jpg
+2024-12-04 21:47:31,450 - __main__ - INFO - Comparing with user: hacker
+2024-12-04 21:47:31,450 - __main__ - INFO - Attempting face verification with: user_data\hacker\hacker.jpg
+2024-12-04 21:47:34,315 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.5196053066731567, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 39, 'y': 37, 'w': 241, 'h': 241, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 215, 'y': 127, 'w': 231, 'h': 231, 'left_eye': None, 'right_eye': None}}, 'time': 2.86}
+2024-12-04 21:47:34,316 - __main__ - INFO - Match found: hacker with distance 0.5196053066731567
+2024-12-04 21:47:34,316 - __main__ - INFO - Best match: hacker with distance 0.5196053066731567
+2024-12-04 21:47:34,319 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_3df9e6c581ea41c4860f81fd4fa9c59e
+2024-12-04 21:47:34,322 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:34] "POST /auth HTTP/1.1" 200 -
+2024-12-04 21:54:08,924 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 21:54:08,925 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 21:55:50,919 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 21:55:50,919 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 22:00:45,465 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 22:00:45,466 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 22:05:48,535 - __main__ - INFO - Received auth request
+2024-12-04 22:05:48,535 - __main__ - INFO - Auth mode: register
+2024-12-04 22:05:48,535 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:05:48,535 - __main__ - INFO - Processing face image
+2024-12-04 22:05:48,544 - __main__ - ERROR - Error during registration process: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgcodecs\src\loadsave.cpp:813: error: (-215:Assertion failed) !buf.empty() in function 'cv::imdecode_'
+
+2024-12-04 22:05:48,544 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:05:48] "[35m[1mPOST /auth HTTP/1.1[0m" 500 -
+2024-12-04 22:06:00,724 - __main__ - INFO - Received auth request
+2024-12-04 22:06:00,725 - __main__ - INFO - Auth mode: register
+2024-12-04 22:06:00,725 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:06:00,726 - __main__ - INFO - Processing face image
+2024-12-04 22:06:00,726 - __main__ - ERROR - Error during registration process: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgcodecs\src\loadsave.cpp:813: error: (-215:Assertion failed) !buf.empty() in function 'cv::imdecode_'
+
+2024-12-04 22:06:00,727 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:06:00] "[35m[1mPOST /auth HTTP/1.1[0m" 500 -
+2024-12-04 22:06:20,740 - __main__ - INFO - Received auth request
+2024-12-04 22:06:20,740 - __main__ - INFO - Auth mode: login
+2024-12-04 22:06:21,176 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 22:06:21,176 - __main__ - INFO - Face detected at position: x=293, y=230, width=64, height=64
+2024-12-04 22:06:21,182 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_782e815cd1934d44804d4179289e8c35\temp.jpg
+2024-12-04 22:06:21,182 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_782e815cd1934d44804d4179289e8c35
+2024-12-04 22:06:21,182 - __main__ - ERROR - Image processing error: Users database not found
+2024-12-04 22:06:21,192 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:06:21] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:21:03,192 - __main__ - INFO - Received auth request
+2024-12-04 22:21:03,192 - __main__ - INFO - Auth mode: register
+2024-12-04 22:21:03,192 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:21:03,192 - __main__ - INFO - Processing face image
+2024-12-04 22:21:03,234 - __main__ - ERROR - No face detected in registration image
+2024-12-04 22:21:03,235 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:03] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:21:05,304 - __main__ - INFO - Received auth request
+2024-12-04 22:21:05,304 - __main__ - INFO - Auth mode: register
+2024-12-04 22:21:05,305 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:21:05,305 - __main__ - INFO - Processing face image
+2024-12-04 22:21:05,340 - __main__ - ERROR - No face detected in registration image
+2024-12-04 22:21:05,341 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:05] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:21:06,477 - __main__ - INFO - Received auth request
+2024-12-04 22:21:06,477 - __main__ - INFO - Auth mode: register
+2024-12-04 22:21:06,477 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:21:06,477 - __main__ - INFO - Processing face image
+2024-12-04 22:21:06,510 - __main__ - ERROR - No face detected in registration image
+2024-12-04 22:21:06,516 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:06] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:21:08,985 - __main__ - INFO - Received auth request
+2024-12-04 22:21:08,986 - __main__ - INFO - Auth mode: register
+2024-12-04 22:21:08,986 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:21:08,986 - __main__ - INFO - Processing face image
+2024-12-04 22:21:09,031 - __main__ - ERROR - No face detected in registration image
+2024-12-04 22:21:09,032 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:09] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:21:10,018 - __main__ - INFO - Received auth request
+2024-12-04 22:21:10,018 - __main__ - INFO - Auth mode: register
+2024-12-04 22:21:10,018 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:21:10,018 - __main__ - INFO - Processing face image
+2024-12-04 22:21:10,052 - __main__ - ERROR - No face detected in registration image
+2024-12-04 22:21:10,053 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:10] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:21:43,583 - __main__ - INFO - Received auth request
+2024-12-04 22:21:43,587 - __main__ - INFO - Auth mode: register
+2024-12-04 22:21:43,587 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 22:21:43,588 - __main__ - INFO - Processing face image
+2024-12-04 22:21:43,625 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 22:21:43,630 - __main__ - INFO - Saved face image to: user_data\hacker\hacker.jpg
+2024-12-04 22:21:43,631 - __main__ - INFO - Successfully registered user: hacker
+2024-12-04 22:21:43,633 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:43] "POST /auth HTTP/1.1" 200 -
+2024-12-04 22:21:52,339 - __main__ - INFO - Received auth request
+2024-12-04 22:21:52,339 - __main__ - INFO - Auth mode: login
+2024-12-04 22:21:52,391 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 22:21:52,391 - __main__ - INFO - Face detected at position: x=225, y=136, width=246, height=246
+2024-12-04 22:21:52,410 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_a4017c94346c4eadbc51c88f074a7ba9\temp.jpg
+2024-12-04 22:21:52,411 - __main__ - INFO - Comparing with user: hacker
+2024-12-04 22:21:52,411 - __main__ - INFO - Attempting face verification with: user_data\hacker\hacker.jpg
+2024-12-04 22:21:55,028 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.10816649157432345, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 34, 'y': 35, 'w': 257, 'h': 257, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 221, 'y': 125, 'w': 250, 'h': 250, 'left_eye': None, 'right_eye': None}}, 'time': 2.62}
+2024-12-04 22:21:55,031 - __main__ - INFO - Match found: hacker with distance 0.10816649157432345
+2024-12-04 22:21:55,032 - __main__ - INFO - Best match: hacker with distance 0.10816649157432345
+2024-12-04 22:21:55,039 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_a4017c94346c4eadbc51c88f074a7ba9
+2024-12-04 22:21:55,042 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:21:55] "POST /auth HTTP/1.1" 200 -
+2024-12-04 22:25:36,029 - __main__ - INFO - Received auth request
+2024-12-04 22:25:36,029 - __main__ - INFO - Auth mode: login
+2024-12-04 22:25:36,075 - __main__ - INFO - Detected 2 faces in image
+2024-12-04 22:25:36,075 - __main__ - INFO - Face detected at position: x=209, y=143, width=216, height=216
+2024-12-04 22:25:36,075 - __main__ - INFO - Face detected at position: x=19, y=273, width=66, height=66
+2024-12-04 22:25:36,075 - __main__ - INFO - Multiple faces detected, using the largest face
+2024-12-04 22:25:36,075 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_1b23be08395d4f4b96d4a751061c545e\temp.jpg
+2024-12-04 22:25:36,075 - __main__ - INFO - Comparing with user: hacker
+2024-12-04 22:25:36,080 - __main__ - INFO - Attempting face verification with: user_data\hacker\hacker.jpg
+2024-12-04 22:25:36,556 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.3601576665168178, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 40, 'y': 42, 'w': 217, 'h': 217, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 221, 'y': 125, 'w': 250, 'h': 250, 'left_eye': None, 'right_eye': None}}, 'time': 0.47}
+2024-12-04 22:25:36,556 - __main__ - INFO - Match found: hacker with distance 0.3601576665168178
+2024-12-04 22:25:36,556 - __main__ - INFO - Best match: hacker with distance 0.3601576665168178
+2024-12-04 22:25:36,571 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_1b23be08395d4f4b96d4a751061c545e
+2024-12-04 22:25:36,573 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:25:36] "POST /auth HTTP/1.1" 200 -
+2024-12-04 22:29:17,312 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:29:17] "OPTIONS /auth HTTP/1.1" 200 -
+2024-12-04 22:29:17,569 - __main__ - INFO - Received auth request
+2024-12-04 22:29:17,569 - __main__ - INFO - Auth mode: register
+2024-12-04 22:29:17,569 - __main__ - INFO - Processing registration for user: unknown2
+2024-12-04 22:29:17,569 - __main__ - INFO - Processing face image
+2024-12-04 22:29:17,665 - __main__ - ERROR - No face detected in registration image
+2024-12-04 22:29:17,667 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:29:17] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 22:29:34,941 - __main__ - INFO - Received auth request
+2024-12-04 22:29:34,942 - __main__ - INFO - Auth mode: register
+2024-12-04 22:29:34,942 - __main__ - INFO - Processing registration for user: unknown2
+2024-12-04 22:29:34,942 - __main__ - INFO - Processing face image
+2024-12-04 22:29:34,980 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 22:29:34,986 - __main__ - INFO - Saved face image to: user_data\unknown2\unknown2.jpg
+2024-12-04 22:29:34,988 - __main__ - INFO - Successfully registered user: unknown2
+2024-12-04 22:29:34,988 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:29:34] "POST /auth HTTP/1.1" 200 -
+2024-12-04 22:29:47,900 - __main__ - INFO - Received auth request
+2024-12-04 22:29:47,900 - __main__ - INFO - Auth mode: login
+2024-12-04 22:29:47,991 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 22:29:47,992 - __main__ - INFO - Face detected at position: x=229, y=144, width=232, height=232
+2024-12-04 22:29:47,996 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_675fcfb03f1640b3b718308fd51e6cba\temp.jpg
+2024-12-04 22:29:47,998 - __main__ - INFO - Comparing with user: hacker
+2024-12-04 22:29:48,007 - __main__ - INFO - Attempting face verification with: user_data\hacker\hacker.jpg
+2024-12-04 22:29:48,599 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.3317566940991028, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 35, 'y': 39, 'w': 232, 'h': 232, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 221, 'y': 125, 'w': 250, 'h': 250, 'left_eye': None, 'right_eye': None}}, 'time': 0.59}
+2024-12-04 22:29:48,609 - __main__ - INFO - Match found: hacker with distance 0.3317566940991028
+2024-12-04 22:29:48,609 - __main__ - INFO - Comparing with user: unknown2
+2024-12-04 22:29:48,611 - __main__ - INFO - Attempting face verification with: user_data\unknown2\unknown2.jpg
+2024-12-04 22:29:49,245 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.09750611931033437, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 35, 'y': 39, 'w': 232, 'h': 232, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 227, 'y': 142, 'w': 265, 'h': 265, 'left_eye': None, 'right_eye': None}}, 'time': 0.63}
+2024-12-04 22:29:49,255 - __main__ - INFO - Match found: unknown2 with distance 0.09750611931033437
+2024-12-04 22:29:49,255 - __main__ - INFO - Best match: unknown2 with distance 0.09750611931033437
+2024-12-04 22:29:49,262 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_675fcfb03f1640b3b718308fd51e6cba
+2024-12-04 22:29:49,262 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 22:29:49] "POST /auth HTTP/1.1" 200 -
+2024-12-04 23:12:07,838 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 23:12:07,840 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 23:12:15,784 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:12:15] "OPTIONS /auth HTTP/1.1" 200 -
+2024-12-04 23:12:16,037 - __main__ - INFO - Received auth request
+2024-12-04 23:12:16,039 - __main__ - INFO - Auth mode: login
+2024-12-04 23:12:16,461 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:12:16,461 - __main__ - INFO - Face detected at position: x=233, y=146, width=209, height=209
+2024-12-04 23:12:16,471 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_bea44f0748254b59959eabd8112bfddf\temp.jpg
+2024-12-04 23:12:16,472 - __main__ - INFO - Comparing with user: LikhithSai
+2024-12-04 23:12:16,481 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_bea44f0748254b59959eabd8112bfddf
+2024-12-04 23:12:16,482 - __main__ - ERROR - Image processing error: 'list' object has no attribute 'get'
+2024-12-04 23:12:16,486 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:12:16] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 23:12:25,182 - __main__ - INFO - Received auth request
+2024-12-04 23:12:25,183 - __main__ - INFO - Auth mode: register
+2024-12-04 23:12:25,183 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 23:12:25,184 - __main__ - INFO - Processing face image
+2024-12-04 23:12:25,249 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:12:25,255 - __main__ - INFO - Saved face image to: user_data\hacker\hacker.jpg
+2024-12-04 23:12:25,256 - __main__ - INFO - Successfully registered user: hacker
+2024-12-04 23:12:25,257 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:12:25] "POST /auth HTTP/1.1" 200 -
+2024-12-04 23:12:30,262 - __main__ - INFO - Received auth request
+2024-12-04 23:12:30,262 - __main__ - INFO - Auth mode: login
+2024-12-04 23:12:30,354 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:12:30,355 - __main__ - INFO - Face detected at position: x=224, y=116, width=263, height=263
+2024-12-04 23:12:30,361 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_b59f388d3289430b9b4ab586239c32e5\temp.jpg
+2024-12-04 23:12:30,362 - __main__ - INFO - Comparing with user: LikhithSai
+2024-12-04 23:12:30,381 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_b59f388d3289430b9b4ab586239c32e5
+2024-12-04 23:12:30,381 - __main__ - ERROR - Image processing error: 'list' object has no attribute 'get'
+2024-12-04 23:12:30,383 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:12:30] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 23:13:02,237 - __main__ - INFO - Received auth request
+2024-12-04 23:13:02,238 - __main__ - INFO - Auth mode: login
+2024-12-04 23:13:02,288 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:13:02,288 - __main__ - INFO - Face detected at position: x=180, y=148, width=281, height=281
+2024-12-04 23:13:02,292 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_66f1dea164884a4bb78dc89859a8419e\temp.jpg
+2024-12-04 23:13:02,293 - __main__ - INFO - Comparing with user: LikhithSai
+2024-12-04 23:13:02,300 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_66f1dea164884a4bb78dc89859a8419e
+2024-12-04 23:13:02,300 - __main__ - ERROR - Image processing error: 'list' object has no attribute 'get'
+2024-12-04 23:13:02,302 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:13:02] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 23:16:26,489 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 23:16:26,489 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 23:16:38,525 - __main__ - INFO - Received auth request
+2024-12-04 23:16:38,525 - __main__ - INFO - Auth mode: register
+2024-12-04 23:16:38,525 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 23:16:38,525 - __main__ - ERROR - Registration failed: User hacker already exists
+2024-12-04 23:16:38,532 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:16:38] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 23:16:58,784 - __main__ - INFO - Received auth request
+2024-12-04 23:16:58,785 - __main__ - INFO - Auth mode: login
+2024-12-04 23:16:59,093 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:16:59,093 - __main__ - INFO - Face detected at position: x=205, y=139, width=251, height=251
+2024-12-04 23:16:59,097 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_8a792ee63bf44fb6b8e3fa68e01330ca\temp.jpg
+2024-12-04 23:16:59,097 - __main__ - INFO - Comparing with user: LikhithSai
+2024-12-04 23:16:59,107 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_8a792ee63bf44fb6b8e3fa68e01330ca
+2024-12-04 23:16:59,108 - __main__ - ERROR - Image processing error: 'list' object has no attribute 'get'
+2024-12-04 23:16:59,109 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:16:59] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-04 23:18:50,164 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.121.40:5001
+2024-12-04 23:18:50,165 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-04 23:18:59,132 - __main__ - INFO - Received auth request
+2024-12-04 23:18:59,132 - __main__ - INFO - Auth mode: register
+2024-12-04 23:18:59,132 - __main__ - INFO - Processing registration for user: hacker
+2024-12-04 23:18:59,132 - __main__ - INFO - Processing face image
+2024-12-04 23:18:59,403 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:18:59,412 - __main__ - INFO - Saved face image to: user_data\hacker\hacker.jpg
+2024-12-04 23:18:59,412 - __main__ - INFO - Successfully registered user: hacker
+2024-12-04 23:18:59,422 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:18:59] "POST /auth HTTP/1.1" 200 -
+2024-12-04 23:19:03,069 - __main__ - INFO - Received auth request
+2024-12-04 23:19:03,069 - __main__ - INFO - Auth mode: login
+2024-12-04 23:19:03,148 - __main__ - INFO - Detected 1 faces in image
+2024-12-04 23:19:03,152 - __main__ - INFO - Face detected at position: x=235, y=151, width=235, height=235
+2024-12-04 23:19:03,154 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_ec8dc27235264bc98a79dd668a9cf637\temp.jpg
+2024-12-04 23:19:03,154 - __main__ - INFO - Comparing with user: hacker
+2024-12-04 23:19:03,159 - __main__ - INFO - Attempting face verification with: user_data\hacker\hacker.jpg
+2024-12-04 23:19:10,272 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.05248228302385749, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 41, 'y': 38, 'w': 232, 'h': 232, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 217, 'y': 160, 'w': 224, 'h': 224, 'left_eye': None, 'right_eye': None}}, 'time': 7.11}
+2024-12-04 23:19:10,278 - __main__ - INFO - Match found: hacker with distance 0.05248228302385749
+2024-12-04 23:19:10,278 - __main__ - INFO - Best match: hacker with distance 0.05248228302385749
+2024-12-04 23:19:10,294 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_ec8dc27235264bc98a79dd668a9cf637
+2024-12-04 23:19:10,307 - werkzeug - INFO - 127.0.0.1 - - [04/Dec/2024 23:19:10] "POST /auth HTTP/1.1" 200 -
+2024-12-05 14:55:05,345 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.245.81:5001
+2024-12-05 14:55:05,347 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2024-12-05 14:55:44,774 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2024 14:55:44] "OPTIONS /auth HTTP/1.1" 200 -
+2024-12-05 14:55:45,039 - __main__ - INFO - Received auth request
+2024-12-05 14:55:45,046 - __main__ - INFO - Auth mode: register
+2024-12-05 14:55:45,046 - __main__ - INFO - Processing registration for user: anony45
+2024-12-05 14:55:45,047 - __main__ - INFO - Processing face image
+2024-12-05 14:55:45,305 - __main__ - ERROR - No face detected in registration image
+2024-12-05 14:55:45,307 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2024 14:55:45] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-05 14:55:59,208 - __main__ - INFO - Received auth request
+2024-12-05 14:55:59,208 - __main__ - INFO - Auth mode: register
+2024-12-05 14:55:59,208 - __main__ - INFO - Processing registration for user: anony45
+2024-12-05 14:55:59,209 - __main__ - INFO - Processing face image
+2024-12-05 14:55:59,271 - __main__ - ERROR - No face detected in registration image
+2024-12-05 14:55:59,273 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2024 14:55:59] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-05 14:56:06,815 - __main__ - INFO - Received auth request
+2024-12-05 14:56:06,815 - __main__ - INFO - Auth mode: register
+2024-12-05 14:56:06,815 - __main__ - INFO - Processing registration for user: anony45
+2024-12-05 14:56:06,817 - __main__ - INFO - Processing face image
+2024-12-05 14:56:06,871 - __main__ - ERROR - No face detected in registration image
+2024-12-05 14:56:06,872 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2024 14:56:06] "[31m[1mPOST /auth HTTP/1.1[0m" 400 -
+2024-12-05 14:56:15,508 - __main__ - INFO - Received auth request
+2024-12-05 14:56:15,511 - __main__ - INFO - Auth mode: register
+2024-12-05 14:56:15,511 - __main__ - INFO - Processing registration for user: anony45
+2024-12-05 14:56:15,511 - __main__ - INFO - Processing face image
+2024-12-05 14:56:15,571 - __main__ - INFO - Detected 1 faces in image
+2024-12-05 14:56:15,583 - __main__ - INFO - Saved face image to: user_data\anony45\anony45.jpg
+2024-12-05 14:56:15,584 - __main__ - INFO - Successfully registered user: anony45
+2024-12-05 14:56:15,586 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2024 14:56:15] "POST /auth HTTP/1.1" 200 -
+2024-12-05 14:56:24,632 - __main__ - INFO - Received auth request
+2024-12-05 14:56:24,632 - __main__ - INFO - Auth mode: login
+2024-12-05 14:56:24,709 - __main__ - INFO - Detected 1 faces in image
+2024-12-05 14:56:24,709 - __main__ - INFO - Face detected at position: x=206, y=134, width=251, height=251
+2024-12-05 14:56:24,714 - __main__ - INFO - Temporary image saved at: user_data\login_attempt_69570bf3ca74431aafb033b7f8fa67d1\temp.jpg
+2024-12-05 14:56:24,715 - __main__ - INFO - Comparing with user: hacker
+2024-12-05 14:56:24,716 - __main__ - INFO - Attempting face verification with: user_data\hacker\hacker.jpg
+2024-12-05 14:56:28,555 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.5504014141965503, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 36, 'y': 35, 'w': 261, 'h': 261, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 217, 'y': 160, 'w': 224, 'h': 224, 'left_eye': None, 'right_eye': None}}, 'time': 3.84}
+2024-12-05 14:56:28,556 - __main__ - INFO - Match found: hacker with distance 0.5504014141965503
+2024-12-05 14:56:28,556 - __main__ - INFO - Comparing with user: anony45
+2024-12-05 14:56:28,557 - __main__ - INFO - Attempting face verification with: user_data\anony45\anony45.jpg
+2024-12-05 14:56:29,232 - __main__ - INFO - Verification result: {'verified': True, 'distance': 0.19589719121240057, 'threshold': 0.68, 'model': 'VGG-Face', 'detector_backend': 'opencv', 'similarity_metric': 'cosine', 'facial_areas': {'img1': {'x': 36, 'y': 35, 'w': 261, 'h': 261, 'left_eye': None, 'right_eye': None}, 'img2': {'x': 194, 'y': 144, 'w': 261, 'h': 261, 'left_eye': None, 'right_eye': None}}, 'time': 0.68}
+2024-12-05 14:56:29,233 - __main__ - INFO - Match found: anony45 with distance 0.19589719121240057
+2024-12-05 14:56:29,233 - __main__ - INFO - Best match: anony45 with distance 0.19589719121240057
+2024-12-05 14:56:29,244 - __main__ - INFO - Cleaned up login attempt directory: user_data\login_attempt_69570bf3ca74431aafb033b7f8fa67d1
+2024-12-05 14:56:29,246 - werkzeug - INFO - 127.0.0.1 - - [05/Dec/2024 14:56:29] "POST /auth HTTP/1.1" 200 -

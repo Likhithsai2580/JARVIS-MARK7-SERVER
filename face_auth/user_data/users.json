@@ -1,0 +1,20 @@
+{
+    "hacker": {
+        "username": "hacker",
+        "password": "hackerdfgd",
+        "email": "semalalikithsai@gmail.com",
+        "face_paths": [
+            "user_data\\hacker\\hacker.jpg"
+        ],
+        "failed_attempts": 0
+    },
+    "anony45": {
+        "username": "anony45",
+        "password": "2580lucky@",
+        "email": "niranjankumar.licdo@outlook.com",
+        "face_paths": [
+            "user_data\\anony45\\anony45.jpg"
+        ],
+        "failed_attempts": 0
+    }
+}
