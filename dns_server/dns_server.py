@@ -341,6 +341,38 @@ async def activate_defense_protocol(protocol: str):
         "timestamp": datetime.now().isoformat()
     }
 
+@app.get("/servers/status")
+async def get_servers_status():
+    """Get status of all registered servers and their instances"""
+    result = {}
+    current_time = time.time()
+    
+    for service_type, instances in dns_server.services.items():
+        result[service_type] = {
+            "total_instances": len(instances),
+            "healthy_instances": sum(1 for i in instances if i.status == "healthy"),
+            "instances": [
+                {
+                    "instance_id": instance.instance_id,
+                    "host": instance.host,
+                    "port": instance.port,
+                    "status": instance.status,
+                    "last_heartbeat_age": round(current_time - instance.last_heartbeat, 2),
+                    "power_level": round(instance.power_level, 2),
+                    "security_status": instance.security_status,
+                    "performance_metrics": instance.performance_metrics,
+                    "metadata": instance.metadata
+                }
+                for instance in instances
+            ]
+        }
+    
+    return {
+        "timestamp": datetime.now().isoformat(),
+        "total_services": len(dns_server.services),
+        "services": result
+    }
+
 if __name__ == "__main__":
     import uvicorn
     print("Initializing JARVIS Network Control System...")

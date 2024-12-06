@@ -62,7 +62,7 @@ export class AndroidService extends EventEmitter {
         return this.devices.get(token) || null;
     }
 
-    public async updateDeviceInfo(token: string, info: any): void {
+    public async updateDeviceInfo(token: string, info: any): Promise<void> {
         const device = this.devices.get(token);
         if (device) {
             device.deviceInfo = info;
@@ -71,7 +71,7 @@ export class AndroidService extends EventEmitter {
         }
     }
 
-    public async updateDeviceCapabilities(token: string, capabilities: string[]): void {
+    public async updateDeviceCapabilities(token: string, capabilities: string[]): Promise<void> {
         const device = this.devices.get(token);
         if (device) {
             device.capabilities = capabilities;
@@ -99,5 +99,9 @@ export class AndroidService extends EventEmitter {
 
     public getConnectedDevices(): Device[] {
         return Array.from(this.devices.values());
+    }
+
+    public getDeviceCount(): number {
+        return this.devices.size;
     }
 } 

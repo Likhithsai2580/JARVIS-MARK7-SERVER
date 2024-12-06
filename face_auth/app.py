@@ -10,10 +10,10 @@ from deepface import DeepFace
 import uuid
 import logging.handlers
 from werkzeug.serving import WSGIRequestHandler
-import logging
 import re
+from utils import setup_server
 
-WSGIRequestHandler.triggered_reload = lambda self: None  # Prevent auto-reload during requests
+WSGIRequestHandler.triggered_reload = lambda self: None
 
 app = Flask(__name__)
 
@@ -65,8 +65,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Define constants
-MAX_FAILED_ATTEMPTS = 5  # Maximum allowed failed face recognition attempts
+# Initialize data and server managers
+data_manager, server_manager = setup_server()
 
 @app.route('/auth', methods=['POST'])
 def auth():
@@ -104,7 +104,7 @@ def auth():
                 }), 400
 
             # Check if user already exists
-            users_file = os.path.join(DATA_DIR, 'users.json')
+            users_file = os.path.join(data_manager.data_dir, 'users.json')
             logger.debug(f"Checking if user exists in {users_file}")
             if os.path.exists(users_file):
                 with open(users_file, 'r') as f:
@@ -139,26 +139,23 @@ def auth():
                 logger.info(f"Detected {len(faces)} faces in image")
                 
                 # Save face image
-                user_dir = os.path.join(DATA_DIR, username)
+                user_dir = os.path.join(data_manager.data_dir, username)
                 os.makedirs(user_dir, exist_ok=True)
                 face_path = os.path.join(user_dir, f"{username}.jpg")
                 cv2.imwrite(face_path, img)
                 logger.info(f"Saved face image to: {face_path}")
 
-                # Update users database
-                logger.debug("Updating users database")
-                users = users if os.path.exists(users_file) else {}
-                users[username] = {
-                    'username': username,
-                    'password': password,
-                    'email': email,
-                    'face_paths': [face_path],
-                    'failed_attempts': 0
+                # Queue user data update
+                user_data = {
+                    username: {
+                        'username': username,
+                        'password': password,
+                        'email': email,
+                        'face_paths': [face_path],
+                        'failed_attempts': 0
+                    }
                 }
-
-                with open(users_file, 'w') as f:
-                    json.dump(users, f, indent=4)
-                logger.info(f"Successfully registered user: {username}")
+                data_manager.queue_write(user_data)
 
                 return jsonify({
                     'success': True,
@@ -245,7 +242,7 @@ def auth():
                     face_img = img[start_y:end_y, start_x:end_x]
 
                     # Create a unique directory for this login attempt
-                    login_attempt_dir = os.path.join(DATA_DIR, f"login_attempt_{uuid.uuid4().hex}")
+                    login_attempt_dir = os.path.join(data_manager.data_dir, f"login_attempt_{uuid.uuid4().hex}")
                     os.makedirs(login_attempt_dir, exist_ok=True)
                     
                     # Save temporary image
@@ -256,13 +253,8 @@ def auth():
                     logger.info(f"Temporary image saved at: {temp_path}")
 
                     try:
-                        # Load users database
-                        users_file = os.path.join(DATA_DIR, 'users.json')
-                        if not os.path.exists(users_file):
-                            raise FileNotFoundError("Users database not found")
-
-                        with open(users_file, 'r') as f:
-                            users = json.load(f)
+                        # Use data_manager.users_cache instead of reading file directly
+                        users = data_manager.users_cache
 
                         # Try to find matching face
                         matches = []
@@ -361,18 +353,10 @@ def traditional_login():
         if not username or not password:
             return jsonify({'error': 'Username and password are required.'}), 400
 
-        users_file = os.path.join(DATA_DIR, 'users.json')
-        if os.path.exists(users_file):
-            with open(users_file, 'r') as f:
-                users = json.load(f)
-        else:
-            users = {}
-
-        user = users.get(username)
+        user = data_manager.users_cache.get(username)
         if not user:
             return jsonify({'error': 'User does not exist.'}), 401
 
-        # In production, use hashed passwords!
         if user.get('password') != password:
             return jsonify({'error': 'Incorrect password.'}), 401
 

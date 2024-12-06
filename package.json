@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/winston": "^2.4.4",
+    "winston": "^3.17.0"
+  }
+}
