@@ -1,108 +1,46 @@
-from litellm import Router
-import os
-from typing import List, Dict, Any
-import random
-
-class LLMRouter:
-    def __init__(self):
-        # Define the model deployments for different providers
-        self.model_list = [
-            {
-                "model_name": "gpt-3.5-turbo",
-                "litellm_params": {
-                    "model": "gpt-3.5-turbo",
-                    "api_base": "https://proxy.blackgaypornis.fun/v1",
-                    "api_key": "not-needed"
-                }
-            },
-            {
-                "model_name": "gpt-3.5-turbo",
-                "litellm_params": {
-                    "model": "gpt-3.5-turbo", 
-                    "api_base": "https://shard-ai.xyz/v1",
-                    "api_key": "not-needed"
-                }
-            },
-            {
-                "model_name": "gpt-3.5-turbo",
-                "litellm_params": {
-                    "model": "gpt-3.5-turbo",
-                    "api_base": "https://fresedgpt.space/v1",
-                    "api_key": "not-needed"
-                }
-            },
-            {
-                "model_name": "gpt-3.5-turbo",
-                "litellm_params": {
-                    "model": "gpt-3.5-turbo",
-                    "api_base": "https://www.electronhub.top/v1",
-                    "api_key": "not-needed"
-                }
-            },
-            {
-                "model_name": "gpt-3.5-turbo",
-                "litellm_params": {
-                    "model": "gpt-3.5-turbo",
-                    "api_base": "https://api.webraft.in/freeapi/v1",
-                    "api_key": "not-needed"
-                }
-            },
-            {
-                "model_name": "gpt-3.5-turbo", 
-                "litellm_params": {
-                    "model": "gpt-3.5-turbo",
-                    "api_base": "https://helixmind.online/v1",
-                    "api_key": "not-needed"
-                }
-            }
-        ]
-
-        # Initialize the router with load balancing and fallback settings
-        self.router = Router(
-            model_list=self.model_list,
-            routing_strategy="simple-shuffle",  # Randomly select from available models
-            fallbacks=[{
-                "gpt-3.5-turbo": [m["model_name"] for m in self.model_list]
-            }],
-            context_window_fallbacks=[{
-                "gpt-3.5-turbo": [m["model_name"] for m in self.model_list]
-            }],
-            enable_pre_call_check=True,  # Enable health checks
-        )
-
-    async def get_completion(self, messages: List[Dict[str, str]]) -> str:
-        """
-        Get a completion from one of the available LLM providers
-        """
-        try:
-            response = await self.router.acompletion(
-                model="gpt-3.5-turbo",
-                messages=messages
-            )
-            return response.choices[0].message.content
-        except Exception as e:
-            print(f"Error occurred: {str(e)}")
-            # The router will automatically try fallback models if one fails
-            raise
-
-# FastAPI implementation
+from typing import List
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import logging
+from api import send_chat_request
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
-llm_router = LLMRouter()
+
+class Message(BaseModel):
+    role: str
+    content: str
 
 class ChatRequest(BaseModel):
-    messages: List[Dict[str, str]]
+    messages: List[Message]
+
+async def get_completion(messages: List[Message]) -> str:
+    """
+    Get a completion from one of the available LLM providers
+    """
+    try:
+        response = await send_chat_request(messages)
+        return response
+    except Exception as e:
+        logger.error(f"Error getting completion: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
 @app.post("/chat/completions")
 async def chat_completion(request: ChatRequest):
     try:
-        response = await llm_router.get_completion(request.messages)
+        logger.info(f"Received chat request: {request.messages}")
+        response = await get_completion(request.messages)
+        logger.info(f"Response from LLM: {response}")
         return {"response": response}
+    except HTTPException as http_e:
+        raise http_e
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error processing chat request: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000) 
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,10 +1,11 @@
-from .server_template import BaseServer
+from server_template import BaseServer
 from fastapi import HTTPException, WebSocket
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
 import asyncio
 import json
-from .device_manager import DeviceManager, DeviceStatus
+from device_manager import DeviceManager, DeviceStatus
+import logging
 
 class AndroidCommand(BaseModel):
     command_type: str
@@ -15,85 +16,42 @@ class AndroidBridgeServer(BaseServer):
     def __init__(self):
         super().__init__("AndroidBridge")
         self.device_manager = DeviceManager()
+        self.logger = logging.getLogger("AndroidBridgeServer")
+        logging.basicConfig(level=logging.INFO)
         
         @self.app.websocket("/ws/{device_id}")
         async def websocket_endpoint(websocket: WebSocket, device_id: str):
             await websocket.accept()
-            await self.logger.log(
-                message=f"New device connection: {device_id}",
-                log_type="info"
-            )
+            self.logger.info(f"New device connection: {device_id}")
             await self.device_manager.register_device(device_id, websocket)
             
             try:
                 while True:
                     data = await websocket.receive_text()
                     message = json.loads(data)
-                    await self.logger.log(
-                        message=f"Received message from device: {device_id}",
-                        log_type="info",
-                        details={"message_type": message.get("type")}
-                    )
+                    self.logger.info(f"Received message from device: {device_id}")
                     await self.device_manager.handle_device_message(device_id, message)
             except Exception as e:
-                await self.logger.log(
-                    message=f"WebSocket error for device {device_id}: {str(e)}",
-                    log_type="error",
-                    details={"error": str(e)}
-                )
+                self.logger.error(f"WebSocket error for device {device_id}: {str(e)}")
             finally:
                 await self.device_manager.unregister_device(device_id)
-                await self.logger.log(
-                    message=f"Device disconnected: {device_id}",
-                    log_type="info"
-                )
+                self.logger.info(f"Device disconnected: {device_id}")
         
         @self.app.post("/send/{device_id}")
         async def send_command(device_id: str, command: AndroidCommand):
             self.set_busy(True)
             try:
-                await self.logger.log(
-                    message=f"Sending command to device: {device_id}",
-                    log_type="info",
-                    details={
-                        "command_type": command.command_type,
-                        "data": command.data
-                    }
-                )
-                
                 if command.command_type not in self.device_manager.command_handlers:
-                    await self.logger.log(
-                        message=f"Unknown command type: {command.command_type}",
-                        log_type="error",
-                        details={"device_id": device_id}
-                    )
-                    raise HTTPException(
-                        status_code=400,
-                        detail=f"Unknown command type: {command.command_type}"
-                    )
+                    error_msg = f"Unknown command type: {command.command_type}"
+                    self.logger.error(error_msg)
+                    raise HTTPException(status_code=400, detail=error_msg)
                 
                 handler = self.device_manager.command_handlers[command.command_type]
                 response = await handler(device_id, command.data)
-                
-                await self.logger.log(
-                    message=f"Command executed successfully: {command.command_type}",
-                    log_type="info",
-                    details={
-                        "device_id": device_id,
-                        "response": response
-                    }
-                )
-                
+                self.logger.info(f"Command {command.command_type} executed successfully for {device_id}")
                 return response
             except Exception as e:
-                await self.logger.log(
-                    message=f"Command execution failed: {command.command_type}",
-                    log_type="error",
-                    details={
-                        "device_id": device_id,
-                        "error": str(e)
-                    }
-                )
+                self.logger.error(f"Command execution failed for {device_id}: {e}")
                 raise
             finally:
                 self.set_busy(False)
@@ -102,10 +60,7 @@ class AndroidBridgeServer(BaseServer):
         async def list_devices():
             """List connected devices with their status"""
             try:
-                await self.logger.log(
-                    message="Listing connected devices",
-                    log_type="info"
-                )
+                self.logger.info("Listing connected devices")
                 
                 devices = {}
                 for device_id, status in self.device_manager.devices.items():
@@ -118,38 +73,24 @@ class AndroidBridgeServer(BaseServer):
                         "capabilities": status.capabilities
                     }
                 
-                await self.logger.log(
-                    message="Device list retrieved successfully",
-                    log_type="info",
-                    details={"device_count": len(devices)}
-                )
+                self.logger.info("Device list retrieved successfully")
                 
                 return {
                     "devices": devices,
                     "count": len(devices)
                 }
             except Exception as e:
-                await self.logger.log(
-                    message="Failed to list devices",
-                    log_type="error",
-                    details={"error": str(e)}
-                )
+                self.logger.error("Failed to list devices")
                 raise
         
         @self.app.get("/device/{device_id}")
         async def get_device_status(device_id: str):
             """Get detailed status of a specific device"""
             try:
-                await self.logger.log(
-                    message=f"Getting status for device: {device_id}",
-                    log_type="info"
-                )
+                self.logger.info(f"Getting status for device: {device_id}")
                 
                 if device_id not in self.device_manager.devices:
-                    await self.logger.log(
-                        message=f"Device not found: {device_id}",
-                        log_type="warning"
-                    )
+                    self.logger.warning(f"Device not found: {device_id}")
                     raise HTTPException(status_code=404, detail="Device not found")
                 
                 status = self.device_manager.devices[device_id]
@@ -162,22 +103,11 @@ class AndroidBridgeServer(BaseServer):
                     "capabilities": status.capabilities
                 }
                 
-                await self.logger.log(
-                    message=f"Device status retrieved: {device_id}",
-                    log_type="info",
-                    details={
-                        "connected": status.connected,
-                        "battery_level": status.battery_level
-                    }
-                )
+                self.logger.info(f"Device status retrieved: {device_id}")
                 
                 return response
             except Exception as e:
-                await self.logger.log(
-                    message=f"Failed to get device status: {device_id}",
-                    log_type="error",
-                    details={"error": str(e)}
-                )
+                self.logger.error(f"Failed to get device status: {device_id}")
                 raise
         
         @self.app.post("/device/{device_id}/app/launch")
@@ -185,14 +115,7 @@ class AndroidBridgeServer(BaseServer):
             """Launch an app on the device"""
             self.set_busy(True)
             try:
-                await self.logger.log(
-                    message=f"Launching app on device: {device_id}",
-                    log_type="info",
-                    details={
-                        "package_name": package_name,
-                        "activity": activity
-                    }
-                )
+                self.logger.info(f"Launching app on device: {device_id} with package: {package_name} and activity: {activity}")
                 
                 response = await self.device_manager.handle_app_launch(
                     device_id,
@@ -202,25 +125,11 @@ class AndroidBridgeServer(BaseServer):
                     }
                 )
                 
-                await self.logger.log(
-                    message=f"App launched successfully: {package_name}",
-                    log_type="info",
-                    details={
-                        "device_id": device_id,
-                        "response": response
-                    }
-                )
+                self.logger.info(f"App launched successfully: {package_name}")
                 
                 return response
             except Exception as e:
-                await self.logger.log(
-                    message=f"Failed to launch app: {package_name}",
-                    log_type="error",
-                    details={
-                        "device_id": device_id,
-                        "error": str(e)
-                    }
-                )
+                self.logger.error(f"Failed to launch app: {package_name}")
                 raise
             finally:
                 self.set_busy(False)

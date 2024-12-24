@@ -28,6 +28,22 @@ const logger = createLogger({
     ]
 });
 
+// Configure multer for file uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const uploadDir = path.join(__dirname, '../uploads');
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    }
+});
+
+const upload = multer({ storage });
+
 // Error types
 class AuthenticationError extends Error {
     constructor(message: string) {
@@ -129,9 +145,9 @@ const MAX_COMMANDS_PER_MINUTE = 60;
 
 function monitorConnections() {
     setInterval(() => {
-        const now = Date.now();
+        const currentTime = Date.now();
         connectedDevices.forEach((device, token) => {
-            if (now - device.lastHeartbeat > CONNECTION_TIMEOUT) {
+            if (currentTime - device.lastHeartbeat > CONNECTION_TIMEOUT) {
                 if (device.reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
                     device.status = 'disconnected';
                     device.reconnectAttempts++;
@@ -147,7 +163,7 @@ function monitorConnections() {
 }
 
 function checkCommandRate(token: string): boolean {
-    const now = Date.now();
+    const currentTime = Date.now();
     const commandCount = commandRateLimiter.get(token) || 0;
     if (commandCount >= MAX_COMMANDS_PER_MINUTE) {
         return false;
@@ -242,153 +258,58 @@ io.on('connection', (socket: Socket) => {
                 status: 'pending'
             });
 
-            // Set command timeout
-            const timeoutId = setTimeout(() => {
+            const commandTimeout = setTimeout(() => {
                 device.metrics.failedCommands++;
                 socket.emit('commandTimeout', { messageId, command });
             }, COMMAND_TIMEOUT);
 
-            device.socket.emit('execute', { 
-                command, 
-                params,
-                messageId: messageId || uuidv4(),
-                timestamp: commandStartTime
+            device.socket.emit('execute', { command, params, messageId });
+
+            // Handle command response
+            socket.once(`commandResponse:${messageId}`, (response: any) => {
+                clearTimeout(commandTimeout);
+                device.metrics.lastResponseTime = Date.now() - commandStartTime;
+                
+                if (response.success) {
+                    device.metrics.successfulCommands++;
+                    return { success: true, data: response.data };
+                } else {
+                    device.metrics.failedCommands++;
+                    return { success: false, error: response.error };
+                }
             });
 
-            logger.debug(`Command sent to device ${token}: ${command}`);
         } catch (error) {
             const err = error as Error;
-            logger.error(`Command error for device ${deviceToken}:`, err);
-            const response: ErrorResponse = {
+            logger.error('Command error:', err);
+            socket.emit('commandError', {
                 type: 'COMMAND_ERROR',
                 message: err.message,
                 command: data.command,
                 timestamp: Date.now()
-            };
-            socket.emit('error', response);
-        }
-    });
-
-    socket.on('commandResponse', (data: { 
-        messageId: string; 
-        result: any; 
-        error?: string;
-        executionTime?: number;
-    }) => {
-        if (deviceToken && connectedDevices.has(deviceToken)) {
-            const device = connectedDevices.get(deviceToken)!;
-            device.lastHeartbeat = Date.now();
-            
-            if (data.error) {
-                device.metrics.failedCommands++;
-                logger.error(`Command failed on device ${deviceToken}:`, data.error);
-            } else {
-                device.metrics.successfulCommands++;
-                device.metrics.lastResponseTime = data.executionTime || 0;
-            }
-
-            socket.emit('commandResult', {
-                messageId: data.messageId,
-                result: data.result,
-                error: data.error,
-                timestamp: Date.now()
             });
+            return { success: false, error: err.message };
         }
     });
 
-    socket.on('heartbeat', (data: { 
-        batteryLevel?: number; 
-        metrics?: any;
-    }) => {
-        if (deviceToken && connectedDevices.has(deviceToken)) {
-            const device = connectedDevices.get(deviceToken)!;
-            device.lastHeartbeat = Date.now();
-            device.status = 'connected';
-            device.reconnectAttempts = 0;
-            if (data.batteryLevel !== undefined) {
-                device.batteryLevel = data.batteryLevel;
-            }
-            logger.debug(`Heartbeat received from device ${deviceToken}`);
-        }
-    });
-
-    socket.on('error', (error: Error) => {
-        logger.error(`Socket error for device ${deviceToken}:`, error);
-        if (deviceToken) {
-            const device = connectedDevices.get(deviceToken);
-            if (device) {
-                device.status = 'disconnected';
-            }
-        }
-    });
-
+    // Handle disconnection
     socket.on('disconnect', () => {
-        logger.info(`Device disconnected: ${deviceToken}`);
         if (deviceToken) {
             const device = connectedDevices.get(deviceToken);
             if (device) {
                 device.status = 'disconnected';
-                setTimeout(() => {
-                    if (device.status === 'disconnected') {
-                        connectedDevices.delete(deviceToken!);
-                        logger.info(`Device ${deviceToken} removed from active connections`);
-                    }
-                }, CONNECTION_TIMEOUT);
+                logger.info(`Device disconnected: ${deviceToken}`);
             }
         }
     });
-});
-
-// API endpoints
-app.get('/api/generate-connection-code', (req: Request, res: Response) => {
-    try {
-        const connectionToken = uuidv4();
-        const qrContent = {
-            server: process.env.SERVER_URL || req.headers.host,
-            token: connectionToken,
-            timestamp: Date.now(),
-            expiresIn: 300000 // 5 minutes
-        };
-        
-        logger.info(`Generated new connection code: ${connectionToken}`);
-        res.json({ qrCode: qrContent });
-    } catch (error) {
-        const err = error as Error;
-        logger.error('Error generating connection code:', err);
-        res.status(500).json({ 
-            error: 'Failed to generate connection code',
-            timestamp: Date.now()
-        });
-    }
-});
-
-app.get('/api/device/:token/status', (req: Request, res: Response) => {
-    try {
-        const device = connectedDevices.get(req.params.token);
-        if (!device) {
-            return res.status(404).json({ error: 'Device not found' });
-        }
-
-        res.json({
-            status: device.status,
-            lastHeartbeat: device.lastHeartbeat,
-            batteryLevel: device.batteryLevel,
-            deviceInfo: device.deviceInfo,
-            metrics: device.metrics
-        });
-    } catch (error) {
-        const err = error as Error;
-        logger.error('Error getting device status:', err);
-        res.status(500).json({ error: 'Internal server error' });
-    }
 });
 
 // Error handling middleware
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    logger.error('Unhandled error:', err);
+app.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
+    logger.error('Server error:', err);
     res.status(500).json({ 
-        error: 'Internal server error',
-        timestamp: Date.now()
+        success: false, 
+        error: 'Internal server error' 
     });
 });
 

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Dict, List, Optional, Set
@@ -119,8 +119,31 @@ class DNSServer:
             "power_status": "optimal",
             "active_threats": 0
         }
-        asyncio.create_task(self.health_check_loop())
-        asyncio.create_task(self.power_management_loop())
+        self._tasks = []
+
+    async def __aenter__(self):
+        await self.start()
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.cleanup()
+
+    async def start(self):
+        """Initialize async tasks"""
+        self._tasks = [
+            asyncio.create_task(self.health_check_loop()),
+            asyncio.create_task(self.power_management_loop())
+        ]
+        return self
+
+    async def cleanup(self):
+        """Cleanup async resources"""
+        for task in self._tasks:
+            if not task.done():
+                task.cancel()
+        if self._tasks:
+            await asyncio.gather(*self._tasks, return_exceptions=True)
+        self._tasks.clear()
 
     async def register_service(self, registration: ServiceRegistration) -> ServiceInstance:
         """Register a new service instance"""
@@ -177,7 +200,7 @@ class DNSServer:
         # Return instance with best combination of recent heartbeat and power level
         return max(
             healthy_instances,
-            key=lambda x: (x.power_level * 0.7 + (1.0 / (time.time() - x.last_heartbeat)) * 0.3)
+            key=lambda x: (x.power_level * 0.7 + (1.0 / (time.time() - x.last_heartbeat + 0.0001)) * 0.3)
         )
 
     async def update_heartbeat(self, service_type: str, instance_id: int, metrics: Optional[Dict] = None) -> bool:
@@ -235,7 +258,7 @@ class DNSServer:
                 })
                 
             except Exception as e:
-                print(f"Health check error: {str(e)}")
+                logging.error(f"Health check error: {str(e)}")
                 
             await asyncio.sleep(self.health_check_interval)
 
@@ -255,14 +278,23 @@ class DNSServer:
                 )
                 
             except Exception as e:
-                print(f"Power management error: {str(e)}")
+                logging.error(f"Power management error: {str(e)}")
                 
             await asyncio.sleep(5)
 
-dns_server = DNSServer()
+# Replace the global dns_server instance with a dependency
+async def get_dns_server():
+    """Dependency to get DNS server instance"""
+    if not hasattr(get_dns_server, 'instance'):
+        get_dns_server.instance = DNSServer()
+        await get_dns_server.instance.start()
+    return get_dns_server.instance
 
 @app.post("/register")
-async def register_service(registration: ServiceRegistration):
+async def register_service(
+    registration: ServiceRegistration,
+    dns_server: DNSServer = Depends(get_dns_server)
+):
     """Register a new service instance"""
     instance = await dns_server.register_service(registration)
     return {
@@ -273,7 +305,11 @@ async def register_service(registration: ServiceRegistration):
     }
 
 @app.get("/service/{service_type}")
-async def get_service(service_type: str, requirements: Optional[Dict] = None):
+async def get_service(
+    service_type: str,
+    requirements: Optional[Dict] = None,
+    dns_server: DNSServer = Depends(get_dns_server)
+):
     """Get available service instance"""
     instance = await dns_server.get_service(service_type, requirements)
     return {
@@ -288,7 +324,8 @@ async def get_service(service_type: str, requirements: Optional[Dict] = None):
 async def update_heartbeat(
     service_type: str,
     instance_id: int,
-    metrics: Optional[Dict] = None
+    metrics: Optional[Dict] = None,
+    dns_server: DNSServer = Depends(get_dns_server)
 ):
     """Update service heartbeat and metrics"""
     success = await dns_server.update_heartbeat(service_type, instance_id, metrics)
@@ -297,7 +334,7 @@ async def update_heartbeat(
     return {"status": "updated"}
 
 @app.get("/status")
-async def get_status():
+async def get_status(dns_server: DNSServer = Depends(get_dns_server)):
     """Get comprehensive system status"""
     return {
         "timestamp": datetime.now().isoformat(),
@@ -328,21 +365,8 @@ async def get_status():
         "defense_protocols": dns_server.defense_system.defense_protocols
     }
 
-@app.post("/defense/activate/{protocol}")
-async def activate_defense_protocol(protocol: str):
-    """Activate a defense protocol"""
-    if protocol not in dns_server.defense_system.defense_protocols:
-        raise HTTPException(status_code=404, detail="Protocol not found")
-        
-    dns_server.defense_system.defense_protocols[protocol] = True
-    return {
-        "status": "activated",
-        "protocol": protocol,
-        "timestamp": datetime.now().isoformat()
-    }
-
 @app.get("/servers/status")
-async def get_servers_status():
+async def get_servers_status(dns_server: DNSServer = Depends(get_dns_server)):
     """Get status of all registered servers and their instances"""
     result = {}
     current_time = time.time()
@@ -373,7 +397,20 @@ async def get_servers_status():
         "services": result
     }
 
+@app.post("/defense/activate/{protocol}")
+async def activate_defense_protocol(protocol: str, dns_server: DNSServer = Depends(get_dns_server)):
+    """Activate a defense protocol"""
+    if protocol not in dns_server.defense_system.defense_protocols:
+        raise HTTPException(status_code=404, detail="Protocol not found")
+        
+    dns_server.defense_system.defense_protocols[protocol] = True
+    return {
+        "status": "activated",
+        "protocol": protocol,
+        "timestamp": datetime.now().isoformat()
+    }
+
 if __name__ == "__main__":
     import uvicorn
     print("Initializing JARVIS Network Control System...")
-    uvicorn.run(app, host="0.0.0.0", port=9000) 
+    uvicorn.run(app, host="0.0.0.0", port=9000)

@@ -1,78 +1,50 @@
-name: Deploy Database Server
+name: 24/7 Deployment
 
 on:
+  push:
+    branches: [ main ]
   schedule:
-    - cron: '0 */6 * * *'  # Run every 6 hours
-  workflow_dispatch:  # Allow manual triggers
+    - cron: '*/30 * * * *'  # Run every 30 minutes
+  workflow_dispatch:  # Manual trigger
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        instance: [1, 2]  # 2 instances for Database server
-    
     steps:
-    - uses: actions/checkout@v2
-    
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install httpx asyncio fastapi uvicorn motor pymongo
-
-    - name: Setup MongoDB
-      run: |
-        # Install MongoDB
-        wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-        echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-        sudo apt-get update
-        sudo apt-get install -y mongodb-org
-        
-        # Start MongoDB
-        sudo systemctl start mongod
-    
-    - name: Create .env file
-      run: |
-        echo "DNS_SERVER_URL=${{ secrets.DNS_SERVER_URL }}" >> .env
-        echo "HOST=${{ secrets.HOST }}" >> .env
-        echo "BASE_PORT=5006" >> .env
-        echo "PORT=$(( 5006 + ${{ matrix.instance }} ))" >> .env
-        echo "INSTANCE_ID=${{ matrix.instance }}" >> .env
-        echo "ENV=production" >> .env
-        echo "DEBUG=False" >> .env
-        # Database specific configurations
-        echo "MONGODB_URI=${{ secrets.MONGODB_URI }}" >> .env
-        echo "DB_NAME=jarvis_db" >> .env
-        echo "DB_USER=${{ secrets.DB_USER }}" >> .env
-        echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
-    
-    - name: Start Server and Monitor
-      run: |
-        # Start server with DNS integration
-        python server.py &
-        SERVER_PID=$!
-        
-        # Health check loop
-        while true; do
-          if ! kill -0 $SERVER_PID 2>/dev/null; then
-            echo "Server crashed, exiting..."
-            exit 1
-          fi
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
           
-          # Get current busy status and DB stats
-          HEALTH=$(curl -s "http://localhost:$(( 5006 + ${{ matrix.instance }} ))/health")
-          BUSY=$(echo $HEALTH | jq -r .busy)
-          STATS=$(curl -s "http://localhost:$(( 5006 + ${{ matrix.instance }} ))/stats")
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install uvicorn
           
-          # Log status
-          echo "Instance ${{ matrix.instance }} status: $BUSY"
-          echo "DB Stats: $(echo $STATS | jq -c .)"
+      - name: Start server
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        run: |
+          nohup uvicorn server:app --host 0.0.0.0 --port 8000 &
+          echo $! > server.pid
           
-          sleep 60
-        done 
+      - name: Health check
+        run: |
+          sleep 10  # Wait for server to start
+          curl -f http://localhost:8000/health || exit 1
+          
+      - name: Monitor and auto-restart
+        run: |
+          while true; do
+            if ! curl -s http://localhost:8000/health > /dev/null; then
+              echo "Server down, restarting..."
+              kill $(cat server.pid)
+              nohup uvicorn server:app --host 0.0.0.0 --port 8000 &
+              echo $! > server.pid
+              sleep 10
+            fi
+            sleep 60
+          done

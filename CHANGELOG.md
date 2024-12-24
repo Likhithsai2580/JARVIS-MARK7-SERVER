@@ -2,6 +2,24 @@
 
 All notable changes to the JARVIS MARK7 server system will be documented in this file.
 
+## [7.0.5] - 2024-12-24
+
+### Added
+- Comprehensive test suite for DNS Server implementation
+- Full test coverage for Database Server functionality
+- Integration of Face Authentication system with Database Server
+- We are using JWT for authentication
+
+### Changed
+- Migrated Face Authentication system to Database Server architecture
+- Switched from SQL database to Discord-based storage solution for improved image handling
+- Optimized database architecture for efficient image storage and retrieval
+
+### Technical Details
+- Evaluated and replaced SQL database implementation due to cost considerations for image storage
+- Implemented Discord as alternative storage solution for improved scalability
+- Integrated Face Authentication directly into Database Server for better system cohesion
+
 ## [7.0.1] - 07-12-2024
 
 ### Added
