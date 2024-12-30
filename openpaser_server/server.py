@@ -1,74 +1,60 @@
 from .server_template import BaseServer
 from fastapi import HTTPException, File, UploadFile
 from pydantic import BaseModel
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Tuple
 import asyncio
 import json
 import aiofiles
 import os
 from datetime import datetime
+from gradio_client import Client, handle_file
 
-class ParseRequest(BaseModel):
-    content: str
-    parser_type: str
-    options: Optional[Dict[str, Any]] = None
+class ProcessRequest(BaseModel):
+    image_url: str
+    box_threshold: float = 0.05
+    iou_threshold: float = 0.1
 
-class BatchParseRequest(BaseModel):
-    items: List[ParseRequest]
-    parallel: Optional[bool] = True
-
-class OpenParserServer(BaseServer):
+class OmniParserServer(BaseServer):
     def __init__(self):
-        super().__init__("OpenParser")
-        self.supported_parsers = ["json", "xml", "yaml", "csv", "markdown"]
+        super().__init__("OmniParser")
+        self.client = Client("microsoft/OmniParser")
         
-        @self.app.post("/parse")
-        async def parse_content(request: ParseRequest):
+        @self.app.post("/process")
+        async def process_image(request: ProcessRequest) -> Dict:
             self.set_busy(True)
             try:
                 await self.logger.log(
-                    message=f"Processing parse request",
+                    message="Processing image parse request",
                     log_type="info",
                     details={
-                        "parser_type": request.parser_type,
-                        "content_length": len(request.content)
+                        "image_url": request.image_url,
+                        "box_threshold": request.box_threshold,
+                        "iou_threshold": request.iou_threshold
                     }
                 )
-                response = await self.process_parse_request(request)
-                return response
+                
+                result = await self.process_image_request(request)
+                return {
+                    "status": "success",
+                    "image_output": result[0],
+                    "parsed_elements": result[1],
+                    "coordinates": result[2]
+                }
+                
             except Exception as e:
                 await self.logger.log(
-                    message=f"Parse error: {str(e)}",
-                    log_type="error",
-                    details={"parser_type": request.parser_type}
+                    message=f"Image parse error: {str(e)}",
+                    log_type="error"
                 )
-                raise
+                raise HTTPException(status_code=500, detail=str(e))
             finally:
                 self.set_busy(False)
-        
-        @self.app.post("/batch")
-        async def batch_parse(request: BatchParseRequest):
-            self.set_busy(True)
-            try:
-                if request.parallel:
-                    tasks = [
-                        self.process_parse_request(item)
-                        for item in request.items
-                    ]
-                    results = await asyncio.gather(*tasks)
-                else:
-                    results = []
-                    for item in request.items:
-                        result = await self.process_parse_request(item)
-                        results.append(result)
-                return {"results": results}
-            finally:
-                self.set_busy(False)
-        
-        @self.app.post("/parse/file")
-        async def parse_file(
+                
+        @self.app.post("/process/file")
+        async def process_file(
             file: UploadFile = File(...),
-            parser_type: Optional[str] = None
+            box_threshold: float = 0.05,
+            iou_threshold: float = 0.1
         ):
             self.set_busy(True)
             try:
@@ -78,84 +64,41 @@ class OpenParserServer(BaseServer):
                     content = await file.read()
                     await out_file.write(content)
                 
-                # Detect parser type if not specified
-                if not parser_type:
-                    parser_type = self.detect_parser_type(file.filename)
-                
-                # Parse file content
-                request = ParseRequest(
-                    content=content.decode(),
-                    parser_type=parser_type
+                request = ProcessRequest(
+                    image_url=temp_path,
+                    box_threshold=box_threshold,
+                    iou_threshold=iou_threshold
                 )
-                response = await self.process_parse_request(request)
+                
+                result = await self.process_image_request(request)
                 
                 # Cleanup
                 os.remove(temp_path)
-                return response
+                
+                return {
+                    "status": "success", 
+                    "image_output": result[0],
+                    "parsed_elements": result[1],
+                    "coordinates": result[2]
+                }
+                
             finally:
                 self.set_busy(False)
-        
-        @self.app.get("/parsers")
-        async def list_parsers():
-            """List available parsers"""
-            return {
-                "parsers": self.supported_parsers,
-                "count": len(self.supported_parsers)
-            }
     
-    def detect_parser_type(self, filename: str) -> str:
-        """Detect parser type from filename"""
-        ext = filename.lower().split('.')[-1]
-        parser_map = {
-            'json': 'json',
-            'xml': 'xml',
-            'yaml': 'yaml',
-            'yml': 'yaml',
-            'csv': 'csv',
-            'md': 'markdown'
-        }
-        return parser_map.get(ext, 'text')
-    
-    async def process_parse_request(self, request: ParseRequest) -> Dict:
-        """Process parsing request"""
+    async def process_image_request(self, request: ProcessRequest) -> Tuple:
+        """Process image parsing request using OmniParser"""
         try:
-            if request.parser_type not in self.supported_parsers:
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"Unsupported parser type: {request.parser_type}"
-                )
+            result = self.client.predict(
+                image_input=handle_file(request.image_url),
+                box_threshold=request.box_threshold,
+                iou_threshold=request.iou_threshold,
+                api_name="/process"
+            )
+            return result
             
-            # Simulate parsing with different parsers
-            await asyncio.sleep(0.5)  # Simulate processing
-            
-            if request.parser_type == "json":
-                result = json.loads(request.content)
-            elif request.parser_type == "xml":
-                # Add XML parsing logic
-                result = {"xml": "parsed"}
-            elif request.parser_type == "yaml":
-                # Add YAML parsing logic
-                result = {"yaml": "parsed"}
-            elif request.parser_type == "csv":
-                # Add CSV parsing logic
-                result = {"csv": "parsed"}
-            elif request.parser_type == "markdown":
-                # Add Markdown parsing logic
-                result = {"markdown": "parsed"}
-            else:
-                result = {"text": request.content}
-            
-            return {
-                "parser": request.parser_type,
-                "parsed": result,
-                "options": request.options
-            }
-            
-        except json.JSONDecodeError:
-            raise HTTPException(status_code=400, detail="Invalid JSON content")
         except Exception as e:
             raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
-    server = OpenParserServer()
-    server.run() 
+    server = OmniParserServer()
+    server.run()

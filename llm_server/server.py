@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 class LLMRequest(BaseModel):
     prompt: str
-    model: Optional[str] = "gpt-3.5-turbo"
+    model: Optional[str] = "claude-sonnet-3.5"
     max_tokens: Optional[int] = 2000
     temperature: Optional[float] = 0.7
     messages: Optional[List[Dict[str, str]]] = None
@@ -36,99 +36,67 @@ class LLMServer(BaseServer):
         # Initialize with service name "llm"
         super().__init__("llm")
         self.llm_router = LLMRouter()
-        
-        @self.app.post("/generate", response_model=LLMResponse)
-        async def generate_text(request: LLMRequest):
-            self.set_busy(True)
-            try:
-                # Add more detailed metadata for DNS monitoring
-                await self.dns_client.update_status(True, {
-                    "request_type": "generate",
-                    "model": request.model,
-                    "max_tokens": request.max_tokens,
-                    "performance_metrics": {
-                        "requests_per_second": 1,  # You can track this more accurately
-                        "cpu": 0.5,  # Add actual CPU metrics
-                        "memory": 0.3  # Add actual memory metrics
-                    }
-                })
-                
-                response = await self.process_llm_request(request)
-                
-                # Update DNS with success status
-                await self.dns_client.update_status(False, {
-                    "last_success": datetime.now().isoformat(),
-                    "tokens_generated": response.tokens
-                })
-                
-                return response
-            except Exception as e:
-                # Update DNS with error status
-                await self.dns_client.update_status(False, {
-                    "last_error": str(e),
-                    "error_timestamp": datetime.now().isoformat()
-                })
-                raise HTTPException(status_code=500, detail=str(e))
-            finally:
-                self.set_busy(False)
+        self.app.post("/generate", response_model=LLMResponse)(self.generate_text)
+        self.app.get("/models")(self.list_models)
 
-        @self.app.get("/models")
-        async def list_models():
-            """List available LLM models"""
-            try:
-                models = [
-                    {
-                        "id": model["model_name"],
-                        "api_base": model["litellm_params"]["api_base"]
-                    }
-                    for model in self.llm_router.model_list
-                ]
-                
-                # Update DNS with model information
-                await self.dns_client.update_status(False, {
-                    "available_models": len(models),
-                    "models": [m["id"] for m in models]
-                })
-                
-                return {"models": models}
-            except Exception as e:
-                await self.dns_client.update_status(False, {
-                    "last_error": str(e),
-                    "error_timestamp": datetime.now().isoformat()
-                })
-                raise HTTPException(status_code=500, detail=str(e))
+    async def generate_text(self, request: LLMRequest):
+        self.set_busy(True)
+        try:
+            # Add more detailed metadata for DNS monitoring
+            await self.dns_client.update_status(True, {
+                "request_type": "generate",
+                "model": request.model,
+                "max_tokens": request.max_tokens,
+                "performance_metrics": {
+                    "requests_per_second": 1,  # You can track this more accurately
+                    "cpu": 0.5,  # Add actual CPU metrics
+                    "memory": 0.3  # Add actual memory metrics
+                }
+            })
+            
+            response = await self.process_llm_request(request)
+            
+            # Update DNS with success status
+            await self.dns_client.update_status(False, {
+                "last_success": datetime.now().isoformat(),
+                "tokens_generated": response.tokens
+            })
+            
+            return response
+        except Exception as e:
+            # Update DNS with error status
+            await self.dns_client.update_status(False, {
+                "last_error": str(e),
+                "error_timestamp": datetime.now().isoformat()
+            })
+            raise HTTPException(status_code=500, detail=str(e))
+        finally:
+            self.set_busy(False)
 
-        @self.app.get("/health")
-        async def health_check():
-            """Enhanced health check with metrics"""
-            try:
-                test_messages = [{"role": "user", "content": "test"}]
-                response = await self.llm_router.get_completion(test_messages)
-                status = "healthy" if response else "unhealthy"
-                
-                metrics = {
-                    "status": status,
-                    "active_models": len(self.llm_router.model_list),
-                    "timestamp": datetime.now().isoformat(),
-                    "performance_metrics": {
-                        "cpu": 0.5,  # Add actual CPU metrics
-                        "memory": 0.3,  # Add actual memory metrics
-                        "network": 0.4  # Add actual network metrics
-                    }
+    async def list_models(self):
+        """List available LLM models"""
+        try:
+            models = [
+                {
+                    "id": model["model_name"],
+                    "api_base": model["litellm_params"]["api_base"]
                 }
-                
-                # Update DNS with health metrics
-                await self.dns_client.update_status(self.busy, metrics)
-                
-                return metrics
-            except Exception as e:
-                error_metrics = {
-                    "status": "unhealthy",
-                    "error": str(e),
-                    "timestamp": datetime.now().isoformat()
-                }
-                await self.dns_client.update_status(True, error_metrics)
-                return error_metrics
+                for model in self.llm_router.model_list
+            ]
+            
+            # Update DNS with model information
+            await self.dns_client.update_status(False, {
+                "available_models": len(models),
+                "models": [m["id"] for m in models]
+            })
+            
+            return {"models": models}
+        except Exception as e:
+            await self.dns_client.update_status(False, {
+                "last_error": str(e),
+                "error_timestamp": datetime.now().isoformat()
+            })
+            raise HTTPException(status_code=500, detail=str(e))
     
     async def process_llm_request(self, request: LLMRequest) -> Dict:
         """Process LLM request with the specified model"""

@@ -2,6 +2,13 @@
 
 All notable changes to the JARVIS MARK7 server system will be documented in this file.
 
+## [7.0.6] - 2024-12-30
+
+### Added
+- Added LLM Server with multiple model support
+- OpenPaser_Server has been updated
+
+
 ## [7.0.5] - 2024-12-24
 
 ### Added
